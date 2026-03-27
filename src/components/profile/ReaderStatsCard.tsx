@@ -35,7 +35,7 @@ interface ReaderStats {
   avgProgress: number;
 }
 
-const PAGES_PER_HOUR = 30; // average reading speed assumption
+
 
 const ReaderStatsCard: React.FC = () => {
   const { user } = useAuth();
