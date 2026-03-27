@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import UserSettings from '@/components/user/UserSettings';
 const MonthlyReadingReport = lazy(() => import('@/components/reading/MonthlyReadingReport'));
+const ReaderStatsCard = lazy(() => import('@/components/profile/ReaderStatsCard'));
 import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
