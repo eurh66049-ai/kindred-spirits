@@ -28,7 +28,7 @@ interface ReaderStats {
   completedBooks: number;
   totalPagesRead: number;
   totalPages: number;
-  estimatedHours: number;
+  totalHours: number;
   favoriteCategories: CategoryStat[];
   currentStreak: number;
   completionRate: number;
