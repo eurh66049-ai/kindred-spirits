@@ -141,7 +141,7 @@ const ReaderStatsCard: React.FC = () => {
           completedBooks,
           totalPagesRead,
           totalPages,
-          estimatedHours,
+          totalHours,
           favoriteCategories,
           currentStreak: streak,
           completionRate: totalBooks > 0 ? Math.round((completedBooks / totalBooks) * 100) : 0,
