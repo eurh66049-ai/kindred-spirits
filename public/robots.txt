@@ -1,14 +1,83 @@
-User-agent: Googlebot
+# Robots.txt for منصة كتبي
+# المكتبة الرقمية العربية المجانية
+
+User-agent: *
 Allow: /
 
-User-agent: Bingbot
+# Allow search engines with minimal delay
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot  
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: LinkedInBot
 Allow: /
 
-User-agent: *
+User-agent: WhatsApp
 Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Disallow private areas
+Disallow: /admin/
+Disallow: /.netlify/
+Disallow: /private/
+Disallow: /_/
+Disallow: /auth
+
+# Allow important book/author/category pages
+Allow: /book/*
+Allow: /category/*
+Allow: /author/*
+Allow: /categories
+Allow: /authors
+Allow: /quotes
+
+# Allow Google Ads and Analytics
+Allow: /pagead/
+Allow: /googleads/
+Allow: /doubleclick/
+Allow: /googlesyndication/
+
+# Allow assets
+Allow: /assets/
+Allow: /public/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
+
+# Sitemap location
+Sitemap: https://kotobi.xyz/sitemap.xml
+
+# Host (preferred domain)
+Host: https://kotobi.xyz
