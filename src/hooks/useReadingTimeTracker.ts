@@ -23,29 +23,22 @@ export const useReadingTimeTracker = (bookId: string | undefined) => {
     if (minutesToAdd < 1) return;
 
     try {
-      // Use RPC or raw update to increment
-      const { error } = await supabase.rpc('increment_reading_time', {
-        p_user_id: user.id,
-        p_book_id: bookId,
-        p_minutes: minutesToAdd,
-      });
+      // Read current value then update (increment)
+      const { data } = await supabase
+        .from('reading_history')
+        .select('reading_time_minutes')
+        .eq('user_id', user.id)
+        .eq('book_id', bookId)
+        .maybeSingle();
 
-      if (error) {
-        // Fallback: read current value then update
-        const { data } = await supabase
+      if (data) {
+        await supabase
           .from('reading_history')
-          .select('reading_time_minutes')
+          .update({
+            reading_time_minutes: (data.reading_time_minutes || 0) + minutesToAdd,
+          })
           .eq('user_id', user.id)
-          .eq('book_id', bookId)
-          .maybeSingle();
-
-        if (data) {
-          await supabase
-            .from('reading_history')
-            .update({ reading_time_minutes: (data.reading_time_minutes || 0) + minutesToAdd })
-            .eq('user_id', user.id)
-            .eq('book_id', bookId);
-        }
+          .eq('book_id', bookId);
       }
 
       // Keep only the remainder seconds
