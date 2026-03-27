@@ -28,14 +28,14 @@ interface ReaderStats {
   completedBooks: number;
   totalPagesRead: number;
   totalPages: number;
-  estimatedHours: number;
+  totalHours: number;
   favoriteCategories: CategoryStat[];
   currentStreak: number;
   completionRate: number;
   avgProgress: number;
 }
 
-const PAGES_PER_HOUR = 30; // average reading speed assumption
+
 
 const ReaderStatsCard: React.FC = () => {
   const { user } = useAuth();
@@ -53,7 +53,7 @@ const ReaderStatsCard: React.FC = () => {
         // Fetch reading history
         const { data: history } = await supabase
           .from('reading_history')
-          .select('book_id, current_page, total_pages, is_completed, last_read_at, started_at')
+          .select('book_id, current_page, total_pages, is_completed, last_read_at, started_at, reading_time_minutes')
           .eq('user_id', user.id);
 
         if (!history || history.length === 0) {
@@ -78,7 +78,8 @@ const ReaderStatsCard: React.FC = () => {
         const completedBooks = history.filter((h) => h.is_completed).length;
         const totalPagesRead = history.reduce((s, h) => s + (h.current_page || 0), 0);
         const totalPages = history.reduce((s, h) => s + (h.total_pages || 0), 0);
-        const estimatedHours = Math.round((totalPagesRead / PAGES_PER_HOUR) * 10) / 10;
+        const totalReadingMinutes = history.reduce((s, h) => s + ((h as any).reading_time_minutes || 0), 0);
+        const totalHours = Math.round((totalReadingMinutes / 60) * 10) / 10;
         const avgProgress =
           totalBooks > 0
             ? Math.round(
@@ -140,7 +141,7 @@ const ReaderStatsCard: React.FC = () => {
           completedBooks,
           totalPagesRead,
           totalPages,
-          estimatedHours,
+          totalHours,
           favoriteCategories,
           currentStreak: streak,
           completionRate: totalBooks > 0 ? Math.round((completedBooks / totalBooks) * 100) : 0,
@@ -221,8 +222,8 @@ const ReaderStatsCard: React.FC = () => {
     {
       icon: Clock,
       label: 'ساعات القراءة',
-      value: stats.estimatedHours,
-      sub: 'تقديرية',
+      value: stats.totalHours,
+      sub: 'فعلية',
       gradient: 'from-blue-500/10 to-blue-500/5',
       iconColor: 'text-blue-500',
     },

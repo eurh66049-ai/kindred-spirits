@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { saveReadingProgress } from '@/utils/readingProgressUtils';
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
+import { useReadingTimeTracker } from '@/hooks/useReadingTimeTracker';
 
 // تكوين PDF.js worker مع إعدادات CORS
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
@@ -29,6 +30,7 @@ const FlipbookReader: React.FC<FlipbookReaderProps> = ({
   const flipBook = useRef<any>(null);
   const navigate = useNavigate();
   const { user } = useAuth();
+  useReadingTimeTracker(bookId);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [loading, setLoading] = useState(true);
