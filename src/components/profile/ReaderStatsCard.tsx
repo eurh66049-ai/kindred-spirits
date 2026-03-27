@@ -53,7 +53,7 @@ const ReaderStatsCard: React.FC = () => {
         // Fetch reading history
         const { data: history } = await supabase
           .from('reading_history')
-          .select('book_id, current_page, total_pages, is_completed, last_read_at, started_at')
+          .select('book_id, current_page, total_pages, is_completed, last_read_at, started_at, reading_time_minutes')
           .eq('user_id', user.id);
 
         if (!history || history.length === 0) {
