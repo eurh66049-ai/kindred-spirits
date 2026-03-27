@@ -222,8 +222,8 @@ const ReaderStatsCard: React.FC = () => {
     {
       icon: Clock,
       label: 'ساعات القراءة',
-      value: stats.estimatedHours,
-      sub: 'تقديرية',
+      value: stats.totalHours,
+      sub: 'فعلية',
       gradient: 'from-blue-500/10 to-blue-500/5',
       iconColor: 'text-blue-500',
     },
