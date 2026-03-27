@@ -1,3 +1,39 @@
-# Welcome to your Lovable project
+# منصة كتبي - المكتبة الرقمية العربية
 
-TODO: Document your project here
+منصة رقمية عربية لقراءة وتصفح الكتب المجانية
+
+## المتطلبات التقنية
+
+- Node.js 18+
+- npm أو yarn
+
+## التشغيل المحلي
+
+```bash
+npm install
+npm run dev
+```
+
+## البناء للإنتاج
+
+```bash
+npm run build
+```
+
+## الميزات
+
+- مكتبة شاملة من الكتب العربية
+- قارئ PDF متقدم
+- بحث ذكي ومرشحات متطورة
+- نظام المراجعات والتقييمات
+- دعم الوضع المظلم
+- تصميم متجاوب لجميع الأجهزة
+
+## التقنيات المستخدمة
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase
+- React Router

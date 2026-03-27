@@ -1,26 +1,143 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- تطبيق الثيم فوراً لتجنب الوميض -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.add(t);
+      })();
+    </script>
+
+    <!-- Preconnect to critical origins only -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://kydmyxsgyxeubhmqzrgo.supabase.co" />
+
+    <!-- Font: Cairo - non-blocking with font-display swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" /></noscript>
+
+    <!-- Favicon - single entry -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#dc2626" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="HkNxX1DL7iSU2O-jOOLf5I_n8tI8-ckAO4XJZwHG24c" />
+    <meta name="msvalidate.01" content="569C405E5568807BCEAB89B5A0718555" />
+
+    <title>منصة كتبي | مكتبتك الرقمية العربية المجانية - آلاف الكتب والروايات</title>
+    <meta name="description" content="منصة كتبي - المكتبة الرقمية العربية المجانية. اقرأ وحمّل آلاف الكتب في الأدب، العلوم، التنمية الذاتية والمزيد. انضم لمجتمع القراء العرب." />
+    <meta name="keywords" content="كتب عربية مجانية, مكتبة رقمية, قراءة اونلاين, تحميل كتب, أدب عربي, كتب PDF, روايات عربية" />
+    <meta name="author" content="kotobi" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="منصة كتبي | مكتبتك الرقمية العربية المجانية" />
+    <meta property="og:description" content="منصة كتبي - المكتبة الرقمية العربية المجانية. اقرأ وحمّل آلاف الكتب." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://kotobi.xyz" />
+    <meta property="og:image" content="https://kotobi.xyz/lovable-uploads/b1cd70fc-5c3b-47ac-ba45-cc3236f7c840.png" />
+    <meta property="og:site_name" content="منصة كتبي" />
+    <meta property="og:locale" content="ar_AR" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    <meta name="twitter:title" content="منصة كتبي | مكتبتك الرقمية العربية المجانية" />
+    <meta name="twitter:description" content="منصة كتبي - المكتبة الرقمية العربية المجانية." />
+    <meta name="twitter:image" content="https://kotobi.xyz/lovable-uploads/b1cd70fc-5c3b-47ac-ba45-cc3236f7c840.png" />
 
-  <body>
-    <div id="root"></div>
+    <!-- SEO -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="canonical" href="https://kotobi.xyz" />
+    <link rel="alternate" hreflang="ar" href="https://kotobi.xyz/" />
+    <link rel="alternate" hreflang="x-default" href="https://kotobi.xyz/" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "منصة كتبي",
+      "url": "https://kotobi.xyz",
+      "description": "المكتبة الرقمية العربية المجانية",
+      "inLanguage": "ar",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kotobi.xyz/search-results?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Critical inline styles + font fallback -->
+    <style>
+      html { background-color: hsl(220 20% 97%); color: hsl(220 15% 20%); }
+      html.dark { background-color: hsl(220 15% 10%); color: hsl(220 10% 90%); }
+      .animate-spin { animation: spin 1s linear infinite !important; }
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+      /* Font fallback to eliminate FOIT */
+      body { font-family: Cairo, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <div id="root">
+      <!-- Inline skeleton for instant FCP - replaced by React on hydration -->
+      <div style="min-height:100vh">
+        <div style="height:56px;background:hsl(220 25% 99%);border-bottom:1px solid hsl(220 18% 90%);display:flex;align-items:center;justify-content:center">
+          <div style="width:100px;height:28px;background:hsl(220 16% 95%);border-radius:6px"></div>
+        </div>
+        <div style="padding:24px 16px;max-width:1200px;margin:0 auto">
+          <div style="height:200px;border-radius:12px;background:linear-gradient(160deg,#0d0221,#150734,#0a1628);margin-bottom:24px"></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px">
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+            <div style="height:240px;background:hsl(220 16% 95%);border-radius:8px;animation:pulse 1.5s infinite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Deferred third-party scripts - load after 5s to reduce TBT -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // GTM
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K8LR83BL');
+          
+          // gtag
+          var gs = document.createElement('script');
+          gs.async = true;
+          gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-N2ZMYTPYV9';
+          document.head.appendChild(gs);
+          gs.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N2ZMYTPYV9');
+          };
+        }, 5000);
+        // AdSense - load after 8s
+        setTimeout(function() {
+          var ad = document.createElement('script');
+          ad.async = true;
+          ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6142276658151386';
+          ad.crossOrigin = 'anonymous';
+          document.head.appendChild(ad);
+        }, 8000);
+      });
+    </script>
   </body>
 </html>
