@@ -124,6 +124,17 @@ const UserProfile: React.FC = () => {
               animate="visible"
             >
               <Suspense fallback={null}>
+                <ReaderStatsCard />
+              </Suspense>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              initial="hidden"
+              animate="visible"
+            >
+              <Suspense fallback={null}>
                 <MonthlyReadingReport />
               </Suspense>
             </motion.div>
