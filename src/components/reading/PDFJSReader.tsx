@@ -25,6 +25,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { saveReadingProgress, getBookReadingProgress } from '@/utils/readingProgressUtils';
 import BookReaderAssistant from './BookReaderAssistant';
 import { useReaderFingerprint } from '@/hooks/useReaderFingerprint';
+import { useReadingTimeTracker } from '@/hooks/useReadingTimeTracker';
 import ReaderHints from './ReaderHints';
 import PageJumpDialog from './PageJumpDialog';
 import ReaderChatPanel from './ReaderChatPanel';

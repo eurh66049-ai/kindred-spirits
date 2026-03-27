@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { saveReadingProgress } from '@/utils/readingProgressUtils';
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
+import { useReadingTimeTracker } from '@/hooks/useReadingTimeTracker';
 
 // تكوين PDF.js worker مع إعدادات CORS
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
