@@ -2177,6 +2177,7 @@ export type Database = {
           is_completed: boolean
           last_read_at: string
           progress_percentage: number | null
+          reading_time_minutes: number
           started_at: string
           total_pages: number
           updated_at: string
@@ -2194,6 +2195,7 @@ export type Database = {
           is_completed?: boolean
           last_read_at?: string
           progress_percentage?: number | null
+          reading_time_minutes?: number
           started_at?: string
           total_pages: number
           updated_at?: string
@@ -2211,6 +2213,7 @@ export type Database = {
           is_completed?: boolean
           last_read_at?: string
           progress_percentage?: number | null
+          reading_time_minutes?: number
           started_at?: string
           total_pages?: number
           updated_at?: string
