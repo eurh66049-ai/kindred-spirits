@@ -39,6 +39,7 @@ const PDFJSReader = () => {
   const { book, loading, error } = useBookDetails(id!);
   const { user } = useAuth();
   const { theme } = useTheme();
+  useReadingTimeTracker(id);
   const containerRef = useRef<HTMLDivElement>(null);
   const memoryManager = useRef(PDFMemoryManager.getInstance());
   const [pdfDoc, setPdfDoc] = useState<any>(null);

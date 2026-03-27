@@ -30,6 +30,7 @@ const FlipbookReader: React.FC<FlipbookReaderProps> = ({
   const flipBook = useRef<any>(null);
   const navigate = useNavigate();
   const { user } = useAuth();
+  useReadingTimeTracker(bookId);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [loading, setLoading] = useState(true);
