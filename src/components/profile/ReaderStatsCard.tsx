@@ -78,7 +78,8 @@ const ReaderStatsCard: React.FC = () => {
         const completedBooks = history.filter((h) => h.is_completed).length;
         const totalPagesRead = history.reduce((s, h) => s + (h.current_page || 0), 0);
         const totalPages = history.reduce((s, h) => s + (h.total_pages || 0), 0);
-        const estimatedHours = Math.round((totalPagesRead / PAGES_PER_HOUR) * 10) / 10;
+        const totalReadingMinutes = history.reduce((s, h) => s + ((h as any).reading_time_minutes || 0), 0);
+        const totalHours = Math.round((totalReadingMinutes / 60) * 10) / 10;
         const avgProgress =
           totalBooks > 0
             ? Math.round(
