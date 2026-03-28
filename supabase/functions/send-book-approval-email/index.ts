@@ -13,6 +13,7 @@ interface BookApprovalEmailRequest {
   bookAuthor: string;
   bookCategory: string;
   userEmail: string;
+  coverImageUrl?: string;
 }
 
 // استخدام EmailJS من المتغيرات البيئية للأمان

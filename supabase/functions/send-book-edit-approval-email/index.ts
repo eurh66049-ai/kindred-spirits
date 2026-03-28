@@ -13,8 +13,9 @@ interface BookEditApprovalEmailRequest {
   bookAuthor: string;
   bookCategory: string;
   userEmail: string;
-  editRequests: string; // التعديلات المطلوبة
-  editorNotes?: string; // ملاحظات المحرر
+  editRequests: string;
+  editorNotes?: string;
+  coverImageUrl?: string;
 }
 
 // استخدام EmailJS من المتغيرات البيئية للأمان
