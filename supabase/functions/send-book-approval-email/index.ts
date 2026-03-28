@@ -306,6 +306,7 @@ serve(async (req) => {
       book_author: bookAuthor,
       book_category: getCategoryLabel(bookCategory),
       book_url: bookUrl,
+      cover_image_url: bookCoverUrl,
       approval_date: new Date().toLocaleDateString('ar-EG', {
         year: 'numeric',
         month: 'long',
