@@ -244,7 +244,7 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const { bookId, userId, bookTitle, bookAuthor, bookCategory, userEmail }: BookApprovalEmailRequest = 
+    const { bookId, userId, bookTitle, bookAuthor, bookCategory, userEmail, coverImageUrl }: BookApprovalEmailRequest = 
       await req.json();
 
     console.log('طلب إرسال بريد إلكتروني للموافقة على الكتاب:', {
