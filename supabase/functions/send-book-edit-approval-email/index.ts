@@ -189,7 +189,8 @@ serve(async (req) => {
       bookCategory, 
       userEmail,
       editRequests,
-      editorNotes 
+      editorNotes,
+      coverImageUrl
     }: BookEditApprovalEmailRequest = await req.json();
 
     console.log('طلب إرسال بريد إلكتروني لموافقة تعديلات الكتاب:', {
