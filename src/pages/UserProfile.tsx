@@ -1,9 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import UserSettings from '@/components/user/UserSettings';
-const MonthlyReadingReport = lazy(() => import('@/components/reading/MonthlyReadingReport'));
-const ReaderStatsCard = lazy(() => import('@/components/profile/ReaderStatsCard'));
 import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
@@ -117,27 +115,6 @@ const UserProfile: React.FC = () => {
               <UserSettings key={user?.id || 'settings'} />
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              initial="hidden"
-              animate="visible"
-            >
-              <Suspense fallback={null}>
-                <ReaderStatsCard />
-              </Suspense>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              initial="hidden"
-              animate="visible"
-            >
-              <Suspense fallback={null}>
-                <MonthlyReadingReport />
-              </Suspense>
-            </motion.div>
           </div>
         </div>
       </motion.main>

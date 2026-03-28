@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Loader2 } from 'lucide-react';
@@ -11,6 +11,8 @@ import UserBookSubmissions from '@/components/books/UserBookSubmissions';
 import ReadingHistory from '@/components/user/ReadingHistory';
 import UserDownloadedBooks from '@/components/books/UserDownloadedBooks';
 import { SEOHead } from '@/components/seo/SEOHead';
+const MonthlyReadingReport = lazy(() => import('@/components/reading/MonthlyReadingReport'));
+const ReaderStatsCard = lazy(() => import('@/components/profile/ReaderStatsCard'));
 
 const MyBooks: React.FC = () => {
   const { user, loading } = useAuth();
@@ -125,6 +127,15 @@ const MyBooks: React.FC = () => {
                 <UserBookSubmissions key={user?.id || 'books'} />
               </TabsContent>
             </Tabs>
+
+            <div className="mt-8 space-y-8">
+              <Suspense fallback={null}>
+                <ReaderStatsCard />
+              </Suspense>
+              <Suspense fallback={null}>
+                <MonthlyReadingReport />
+              </Suspense>
+            </div>
           </motion.div>
         </div>
       </motion.main>
