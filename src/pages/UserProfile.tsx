@@ -115,27 +115,6 @@ const UserProfile: React.FC = () => {
               <UserSettings key={user?.id || 'settings'} />
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              initial="hidden"
-              animate="visible"
-            >
-              <Suspense fallback={null}>
-                <ReaderStatsCard />
-              </Suspense>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              initial="hidden"
-              animate="visible"
-            >
-              <Suspense fallback={null}>
-                <MonthlyReadingReport />
-              </Suspense>
-            </motion.div>
           </div>
         </div>
       </motion.main>
