@@ -102,7 +102,8 @@ serve(async (req) => {
               bookTitle: submission.title,
               bookAuthor: submission.author,
               bookCategory: submission.category,
-              userEmail: submission.user_email
+              userEmail: submission.user_email,
+              coverImageUrl: submission.cover_image_url
             }
           })
 

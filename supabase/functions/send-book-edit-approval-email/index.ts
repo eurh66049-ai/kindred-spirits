@@ -13,8 +13,9 @@ interface BookEditApprovalEmailRequest {
   bookAuthor: string;
   bookCategory: string;
   userEmail: string;
-  editRequests: string; // التعديلات المطلوبة
-  editorNotes?: string; // ملاحظات المحرر
+  editRequests: string;
+  editorNotes?: string;
+  coverImageUrl?: string;
 }
 
 // استخدام EmailJS من المتغيرات البيئية للأمان
@@ -188,7 +189,8 @@ serve(async (req) => {
       bookCategory, 
       userEmail,
       editRequests,
-      editorNotes 
+      editorNotes,
+      coverImageUrl
     }: BookEditApprovalEmailRequest = await req.json();
 
     console.log('طلب إرسال بريد إلكتروني لموافقة تعديلات الكتاب:', {
@@ -214,9 +216,11 @@ serve(async (req) => {
     // جلب معلومات الكتاب المعتمد لإنشاء الرابط
     const { data: bookSubmission, error: bookError } = await supabaseClient
       .from('book_submissions')
-      .select('slug, id')
+      .select('slug, id, cover_image_url')
       .eq('id', bookId)
       .single();
+
+    const bookCoverUrl = coverImageUrl || bookSubmission?.cover_image_url || '';
 
     let bookUrl = 'https://kotobi.xyz';
     
@@ -243,6 +247,7 @@ serve(async (req) => {
       book_author: bookAuthor,
       book_category: getCategoryLabel(bookCategory),
       book_url: bookUrl,
+      cover_image_url: bookCoverUrl,
       edit_requests: editRequests || 'تعديلات عامة على الكتاب',
       editor_notes: editorNotes || '',
       approval_date: new Date().toLocaleDateString('ar-EG', {

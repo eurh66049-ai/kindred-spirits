@@ -67,7 +67,8 @@ serve(async (req) => {
             bookCategory: submission.category,
             userEmail: submission.user_email,
             editRequests: submission.description || 'تعديلات عامة على الكتاب',
-            editorNotes: reviewerNotes
+            editorNotes: reviewerNotes,
+            coverImageUrl: submission.cover_image_url
           }
         })
         
