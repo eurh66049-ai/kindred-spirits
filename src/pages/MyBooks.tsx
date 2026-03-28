@@ -127,6 +127,15 @@ const MyBooks: React.FC = () => {
                 <UserBookSubmissions key={user?.id || 'books'} />
               </TabsContent>
             </Tabs>
+
+            <div className="mt-8 space-y-8">
+              <Suspense fallback={null}>
+                <ReaderStatsCard />
+              </Suspense>
+              <Suspense fallback={null}>
+                <MonthlyReadingReport />
+              </Suspense>
+            </div>
           </motion.div>
         </div>
       </motion.main>
