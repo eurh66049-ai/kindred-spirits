@@ -247,6 +247,7 @@ serve(async (req) => {
       book_author: bookAuthor,
       book_category: getCategoryLabel(bookCategory),
       book_url: bookUrl,
+      cover_image_url: bookCoverUrl,
       edit_requests: editRequests || 'تعديلات عامة على الكتاب',
       editor_notes: editorNotes || '',
       approval_date: new Date().toLocaleDateString('ar-EG', {
