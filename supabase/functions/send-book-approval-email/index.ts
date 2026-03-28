@@ -269,9 +269,12 @@ serve(async (req) => {
     // جلب معلومات الكتاب المعتمد لإنشاء الرابط
     const { data: bookSubmission, error: bookError } = await supabaseClient
       .from('book_submissions')
-      .select('slug, id')
+      .select('slug, id, cover_image_url')
       .eq('id', bookId)
       .single();
+
+    // استخدام صورة الغلاف من الطلب أو من قاعدة البيانات
+    const bookCoverUrl = coverImageUrl || bookSubmission?.cover_image_url || '';
 
     let bookUrl = 'https://kotobi.xyz'; // الرابط الافتراضي للموقع
     console.log('الرابط الافتراضي:', bookUrl);
