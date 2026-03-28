@@ -26,7 +26,12 @@ const EMAIL_FROM = 'noreply@kotobi.com';
 const EMAIL_SUBJECT_PREFIX = '[كتبي] ';
 
 // نموذج HTML للبريد الإلكتروني
-const createEmailTemplate = (userName: string, bookTitle: string, bookAuthor: string, bookCategory: string, bookUrl: string, approvalDate: string): string => {
+const createEmailTemplate = (userName: string, bookTitle: string, bookAuthor: string, bookCategory: string, bookUrl: string, approvalDate: string, coverImageUrl?: string): string => {
+  const coverSection = coverImageUrl ? `
+            <div style="text-align: center; margin: 20px 0;">
+              <img src="${coverImageUrl}" alt="غلاف كتاب ${bookTitle}" style="max-width: 200px; max-height: 280px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); object-fit: cover;" />
+            </div>` : '';
+
   return `
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
@@ -35,29 +40,45 @@ const createEmailTemplate = (userName: string, bookTitle: string, bookAuthor: st
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تمت الموافقة على كتابك</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; background-color: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #4ade80, #16a34a); color: white; padding: 30px; text-align: center; }
-        .header h1 { margin: 0; font-size: 28px; }
-        .content { padding: 30px; }
-        .success-icon { background-color: #dcfce7; color: #16a34a; width: 60px; height: 60px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 20px; }
-        .book-details { background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; border-right: 4px solid #16a34a; }
-        .book-details h3 { margin-top: 0; color: #1e293b; }
-        .book-details p { margin: 10px 0; color: #64748b; }
-        .cta-button { background: linear-gradient(135deg, #4ade80, #16a34a); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 20px 0; }
-        .footer { background-color: #f1f5f9; padding: 20px; text-align: center; color: #64748b; font-size: 14px; }
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        body { font-family: 'Tajawal', Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 600px; margin: 20px auto; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); overflow: hidden; }
+        .header { background-color: #ffffff; padding: 30px; text-align: center; }
+        .content { padding: 35px; }
+        .logo-table { margin: 0 auto; border-collapse: collapse; }
+        .logo-img { width: auto; height: 80px; display: block; }
+        .book-details { background-color: #f8f9fa; padding: 25px; border-radius: 10px; margin: 25px 0; border-right: 4px solid #7465ff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .book-details h3 { margin-top: 0; color: #7465ff; font-size: 20px; margin-bottom: 15px; }
+        .book-details p { margin: 12px 0; color: #4a5568; font-size: 15px; }
+        .book-details strong { color: #2d3748; font-weight: 600; }
+        .cta-button { background: linear-gradient(135deg, #7465ff 0%, #5a4af4 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 10px; display: inline-block; font-weight: bold; margin: 25px 0; box-shadow: 0 4px 15px rgba(116, 101, 255, 0.3); text-align: center; }
+        .features-list { background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 25px 0; }
+        .features-list h3 { color: #2d3748; margin-top: 0; margin-bottom: 20px; }
+        .features-list ul { list-style: none; padding: 0; margin: 0; }
+        .features-list li { padding: 8px 0; color: #4a5568; display: flex; align-items: center; }
+        .celebration-banner { background: linear-gradient(45deg, #7465ff, #5a4af4); color: white; padding: 15px; text-align: center; font-weight: bold; margin-bottom: 20px; border-radius: 8px; }
+        .footer { background-color: #f8f9fa; padding: 25px; text-align: center; color: #718096; font-size: 14px; border-top: 1px solid #e2e8f0; }
+        .footer a { color: #7465ff; text-decoration: none; font-weight: 500; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎉 تهانينا! تمت الموافقة على كتابك</h1>
+            <table class="logo-table" align="center">
+                <tr>
+                    <td>
+                        <img src="https://f.top4top.io/p_3503iecyv0.png" class="logo-img" alt="شعار المنصة">
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="content">
-            <div class="success-icon">✅</div>
+            <div class="celebration-banner">
+                🎉 تهانينا! تمت الموافقة على كتابك
+            </div>
+            ${coverSection}
             <h2>عزيزي ${userName}</h2>
             <p>يسعدنا أن نُعلمك بأنه تمت الموافقة على كتابك وأصبح متاحاً الآن في مكتبة "كتبي" الرقمية!</p>
-            
             <div class="book-details">
                 <h3>تفاصيل الكتاب المعتمد:</h3>
                 <p><strong>العنوان:</strong> ${bookTitle}</p>
@@ -65,22 +86,24 @@ const createEmailTemplate = (userName: string, bookTitle: string, bookAuthor: st
                 <p><strong>التصنيف:</strong> ${bookCategory}</p>
                 <p><strong>تاريخ الموافقة:</strong> ${approvalDate}</p>
             </div>
-            
             <p>كتابك أصبح الآن جزءاً من مكتبتنا الرقمية ويمكن للقراء الوصول إليه والاستمتاع بقراءته.</p>
-            
-            <a href="${bookUrl}" class="cta-button">📖 اعرض كتابك الآن</a>
-            
-            <h3>ماذا يحدث الآن؟</h3>
-            <ul>
-                <li>✅ كتابك متاح للقراءة على منصة كتبي</li>
-                <li>📊 يمكنك متابعة إحصائيات القراءة والتقييمات</li>
-                <li>📧 ستصلك إشعارات عند وجود تقييمات أو تعليقات جديدة</li>
-                <li>🔄 يمكنك تحديث معلومات الكتاب في أي وقت</li>
-            </ul>
+            <div style="text-align: center;">
+                <a href="${bookUrl}" class="cta-button">📖 اعرض كتابك الآن</a>
+            </div>
+            <div class="features-list">
+                <h3>ماذا يحدث الآن؟</h3>
+                <ul>
+                    <li>✅ كتابك متاح للقراءة على منصة كتبي</li>
+                    <li>📊 يمكنك متابعة إحصائيات القراءة والتقييمات</li>
+                    <li>📧 ستصلك إشعارات عند وجود تقييمات أو تعليقات جديدة</li>
+                    <li>🔄 يمكنك تحديث معلومات الكتاب في أي وقت</li>
+                </ul>
+            </div>
         </div>
         <div class="footer">
             <p>شكراً لك على إثراء مكتبتنا الرقمية العربية</p>
-            <p>فريق منصة كتبي | <a href="https://kotobi.xyz">kotobi.xyz</a></p>
+            <p><strong>فريق منصة كتبي</strong> | <a href="https://kotobi.xyz">kotobi.xyz</a></p>
+            <p style="margin-top: 15px; font-size: 12px; color: #94a3b8;">معاً نبني أكبر مكتبة رقمية عربية مجانية</p>
         </div>
     </div>
 </body>
